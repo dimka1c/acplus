@@ -1,0 +1,22 @@
+#database_structure{
+  max-height:700px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+@media (min-width: 768px)
+{
+  .navbar-nav>li {
+     float: none;
+  }
+}
+#sql-areas .navbar-nav {
+  float: none!important;
+}
+#tables li{
+  width:auto!important;
+  float:none!important;
+}
+.db-menu-item,
+#tables .draggable span{
+  display: inline-block;
+}
