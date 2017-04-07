@@ -63,10 +63,15 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $this->view->title = 'Системы GPS мониторинга и контроля | Агроцентр-плюс';
-        $this->layout = 'default';
-        return $this->render('index');
-        //return $this->render('index');
+        if (Yii::$app->user->isGuest) {
+            $this->view->title = 'Системы GPS мониторинга и контроля | Агроцентр-плюс';
+            $this->layout = 'default';
+            return $this->render('index');
+        } else {
+            $this->layout = 'user_login';
+            $this->view->title = 'Системы GPS мониторинга и контроля | Агроцентр-плюс';
+            return $this->render('index');
+        }
     }
 
     /**

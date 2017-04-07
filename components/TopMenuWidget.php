@@ -25,9 +25,9 @@ class TopMenuWidget extends Widget
     {
         parent::init();
         if(Yii::$app->user->isGuest) {
-            $this->tpl = 'menu_na_user';   // меню не авторизованного пользователя
+            $this->tpl = 'menu_user';   // меню не авторизованного пользователя
         } else {
-            $this->tpl = 'menu_au_user';    // не авторизованного пользователя
+            $this->tpl = 'menu_user';    // не авторизованного пользователя
         }
     }
 
@@ -47,7 +47,7 @@ class TopMenuWidget extends Widget
      * ИСПОЛЬЗОВАЛОСЬ ДЛЯ СТАРОЙ ТАБЛИЦЫ MENU.
      * БЫЛА ДРУГАЯ СТРУКТУРА ТАБЛИЦЫ
      */
-
+/*
     protected function getTree($id_main_group)
     {
         $menu = [];
@@ -74,11 +74,18 @@ class TopMenuWidget extends Widget
         }
         return $this->data;
     }
+*/
+
 
     protected function getTreeNew()
     {
         $menu = [];
-        $data = TopMenu::find()->indexBy('id')->asArray()->all();
+        if (Yii::$app->user->isGuest) {             // если неавторизованный пользователь
+            $data = TopMenu::find()->indexBy('id')->where(['menu_user_na' => 1])->asArray()->all();
+        } elseif (!Yii::$app->user->isGuest) {      // если авторизованный пользователь
+            $data = TopMenu::find()->indexBy('id')->where(['menu_user_auth' => 1])->asArray()->all();
+        }
+
         foreach ($data as $id => $node) {
             if ($node['parent_id'] == 0) {   // главный пункт меню
                 $this->data[$id] = $node;

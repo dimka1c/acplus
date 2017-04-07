@@ -9,6 +9,7 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 use dektrium\user\widgets\Connect;
+use yii\helpers\Url;
 
 AppAsset::register($this);
 ?>
@@ -47,6 +48,13 @@ AppAsset::register($this);
                         <ul class="nav navbar-nav navbar-right">
                             <li id="login-btn">
                                 <a href="/login" title="Вход для авторизированных пользователей">Вход</a>
+                            </li>
+                        </ul>
+                    <?php endif; ?>
+                    <?php if ( !Yii::$app->user->isGuest) : ?>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li id="login-btn">
+                                <a href="<?= Url::to(['/logout'])?>" data-method="post"><?= Yii::$app->user->identity->username ?></a>
                             </li>
                         </ul>
                     <?php endif; ?>

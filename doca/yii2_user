@@ -1,0 +1,15 @@
+http://xdan.ru/kak-programmirovat-s-yii2-vkhod-cherez-sotsialnye-servisy-twitter-google-facebook.html
+
+/user/registration/register Регистрация
+/user/registration/resend Повторная отправка инструкций по регистрации
+/user/registration/confirm Подтверждение пароля
+/user/security/login Форма авторизации
+/user/security/logout Выход(работает только через POST)
+/user/recovery/request Востановление пароля
+/user/settings/profile Настройки профиля
+/user/settings/account Настройки аккаунта (email, username, password)
+/user/settings/networks Привязанные социальные аккаунты
+/user/profile/show Профиль пользователя (требует id)
+/user/admin/index Менеджер пользователей
+
+/***********************************************************************************************************

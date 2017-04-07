@@ -9,18 +9,11 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'language' => 'Ru-ru',
-/*    'modules' => [
+    'modules' => [
         'user' => [
             'class' => 'dektrium\user\Module',
-            'mailer' => [
-                'sender'                => 'registration@acplus.com.ua', // or ['no-reply@myhost.com' => 'Sender name']
-                'welcomeSubject'        => 'ACPLUS',
-                'confirmationSubject'   => 'Confirmation subject',
-                'reconfirmationSubject' => 'Email change subject',
-                'recoverySubject'       => 'Recovery subject',
-            ],
         ],
-    ], */
+    ],
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
@@ -67,6 +60,10 @@ $config = [
                 'login' => '/user/security/login',
                 'register' => '/user/registration/register',
                 'remember-password' => '/user/recovery/request',
+                'logout' => '/user/security/logout',
+                'user/profile' => '/user/settings/profile',
+                'user/account' => '/user/settings/account',
+                '/user/networks' => '/user/settings/networks',
 
             ],
         ],
