@@ -26,12 +26,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <?= $this->render('/_alert', ['module' => Yii::$app->getModule('user')]) ?>
 
-<div class="row">
+<div class="row form-login">
     <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
         <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title"><?= Html::encode($this->title) ?></h3>
-            </div>
             <div class="panel-body">
                 <?php $form = ActiveForm::begin([
                     'id' => 'login-form',
@@ -101,8 +98,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= Html::a(Yii::t('user', 'Don\'t have an account? Sign up!'), ['/registration']) ?>
             </p>
         <?php endif ?>
-        <?= Connect::widget([
-            'baseAuthUrl' => ['/user/security/auth'],
-        ]) ?>
+        <div class="container">
+            <div class="col-md-12 social">
+                <?= Connect::widget([
+                    'baseAuthUrl' => ['/user/security/auth'],
+                ]) ?>
+            </div>
+        </div>
     </div>
 </div>

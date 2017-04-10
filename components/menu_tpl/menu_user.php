@@ -6,7 +6,7 @@
         </a>
         <ul class='dropdown-menu'>
             <?php foreach ($category['childs'] as $key => $val) : ?>
-                <li>
+                <li class="top-menu">
                     <a href="<?=$val['link']?>" title="<?=$val['description']?>"><?=$val['category']?></a>
                 </li>
             <?php endforeach; ?>
@@ -14,5 +14,5 @@
     </li>
 <?php endif; ?>
 <?php if(!isset($category['childs'])) : ?>
-    <li><a href="<?=$category['link']?>"><?=$category['category']?></a></li>
+    <li class="top-menu"><a href="<?=$category['link']?>"><?=$category['category']?></a></li>
 <?php endif; ?>

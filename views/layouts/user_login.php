@@ -53,7 +53,7 @@ AppAsset::register($this);
                     <?php if ( !Yii::$app->user->isGuest) : ?>
                         <ul class="nav navbar-nav navbar-right">
                             <li id="login-btn">
-                                <a href="<?= Url::to(['/logout'])?>" data-method="post" title="Выход"><?= Yii::$app->user->identity->profile->name ?></a>
+                                <a href="<?= Url::to(['/logout'])?>" data-method="post" title="Выход">Выход</a>
                             </li>
                         </ul>
                     <?php endif; ?>

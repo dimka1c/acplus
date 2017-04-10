@@ -115,7 +115,7 @@ $config = [
                 'user/account' => '/user/settings/account',
                 '/user/networks' => '/user/settings/networks',
                 'admin/users' => 'user/admin/index',
-                'admin/roles' => 'rbac'
+                'admin/roles' => 'rbac',
 
 
             ],

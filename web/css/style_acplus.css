@@ -17,6 +17,19 @@ hmtl body {
   position: absolute;
 }
 
+.form-login {
+  padding-top: 50px;
+}
+.top-menu {
+  font-family: 'Open Sans', Arial;
+  min-height: 100%;
+  height: 100%;
+}
+
+.social {
+  margin: 25px 0px 0px 0px;
+}
+
 .fontStyle {
   font-family: 'Open Sans', Arial;
   font-size: 14px;
