@@ -9,9 +9,9 @@ $config = [
     'bootstrap' => ['log'],
     'controllerNamespace' => 'app\commands',
     'components' => [
-        'authManager' => [
+/*        'authManager' => [
             'class' => 'yii\rbac\DbManager',
-        ],
+        ],*/
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],

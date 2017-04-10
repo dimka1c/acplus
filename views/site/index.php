@@ -4,6 +4,7 @@
 
 $this->title = 'Системы GPS мониторинга и контроля | Агроцентр-плюс';
 ?>
+
 <div class="site-index">
 
     <div class="jumbotron">
@@ -13,6 +14,7 @@ $this->title = 'Системы GPS мониторинга и контроля | 
 
         <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
     </div>
+
 
     <div class="body-content">
 
@@ -50,4 +52,5 @@ $this->title = 'Системы GPS мониторинга и контроля | 
         </div>
 
     </div>
+
 </div>

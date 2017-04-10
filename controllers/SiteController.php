@@ -56,6 +56,12 @@ class SiteController extends Controller
         ];
     }
 
+    public function actionRb()
+    {
+        $this->layout = 'empty';
+        return $this->render('rb');
+    }
+
     /**
      * Displays homepage.
      *

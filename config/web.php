@@ -48,16 +48,20 @@ $config = [
                 'recoverySubject'       => 'Recovery subject',
             ],
         ],
-        'rbac' => 'dektrium\rbac\RbacWebModule',
+        'rbac' => [
+            'class' => 'dektrium\rbac\RbacWebModule',
+            'layout' => '@app/views/layouts/admin',
+        ],
     ],
     'components' => [
-        'authManager' => [
+/*        'authManager' => [
             'class' => 'yii\rbac\DbManager',
-        ],
+        ],*/
         'view' => [
             'theme' => [
                 'pathMap' => [
-                    '@dektrium/user/views' => '@app/views/user'
+                    '@dektrium/user/views' => '@app/views/user',
+                    '@dektrium/rbac/views' => '@app/views/rbac',
                 ],
             ],
         ],
@@ -111,7 +115,7 @@ $config = [
                 'user/account' => '/user/settings/account',
                 '/user/networks' => '/user/settings/networks',
                 'admin/users' => 'user/admin/index',
-                'admin/roles' => 'user/admin/roles'
+                'admin/roles' => 'rbac'
 
 
             ],
