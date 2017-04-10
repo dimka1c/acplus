@@ -61,8 +61,9 @@ AppAsset::register($this);
 
                 </div><!--/.nav-collapse -->
             </div>
+
         </nav>
-        <div class="container">
+        <div class="container-fluid">
             <?= $content ?>
         </div>
     </div>

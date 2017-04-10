@@ -9,6 +9,9 @@ $config = [
     'bootstrap' => ['log'],
     'controllerNamespace' => 'app\commands',
     'components' => [
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
+        ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
@@ -21,6 +24,9 @@ $config = [
             ],
         ],
         'db' => $db,
+    ],
+    'modules' => [
+        'rbac' => 'dektrium\rbac\RbacConsoleModule',
     ],
     'params' => $params,
     /*

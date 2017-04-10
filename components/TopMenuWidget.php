@@ -20,6 +20,7 @@ class TopMenuWidget extends Widget
     public $tpl;
     public $tree;
     public $data;
+    public $timeCache = 3600 * 24 * 30;     // время хранения меню в кэше 30 дней
 
     public function init()
     {
@@ -33,9 +34,33 @@ class TopMenuWidget extends Widget
 
     public function run()
     {
-        //$this->tree = $this->getTree($this->id);
+        $menuFor = null; // для кого записываем меню
+        if ( Yii::$app->user->isGuest) {        // меню для неавторизованного пользователя
+            $menuFor = 'menu_not_auth_user';
+            if ($menuCache = Yii::$app->cache->get('menu_not_auth_user')) {
+                // если есть в кеше - возвращаем из кеша
+                return $menuCache;
+            }
+        } else {
+            if (Yii::$app->user->identity->role == 'admin') {
+                $menuFor = 'menu_admin';
+                if ($menuCache = Yii::$app->cache->get('menu_admin')) {
+                    return $menuCache;
+                }
+            } else {
+                $menuFor = 'menu_auth_user';
+                if ($menuCache = Yii::$app->cache->get('menu_auth_user')) {
+                    return $menuCache;
+                }
+            }
+        }
+        // формируем меню
         $this->tree = $this->getTreeNew();
         $this->menuHtml = $this->getMenuHtml($this->tree);
+        // записываем к кэш;
+        if (!empty($menuFor) || !empty($this->menuHtml)) {
+            Yii::$app->cache->set($menuFor, $this->menuHtml, $this->timeCache);     // Записываем меню в кеш
+        }
         return $this->menuHtml;
     }
 
@@ -83,8 +108,18 @@ class TopMenuWidget extends Widget
         if (Yii::$app->user->isGuest) {             // если неавторизованный пользователь
             $data = TopMenu::find()->indexBy('id')->where(['menu_user_na' => 1])->asArray()->all();
         } elseif (!Yii::$app->user->isGuest) {      // если авторизованный пользователь
-            $data = TopMenu::find()->indexBy('id')->where(['menu_user_auth' => 1])->asArray()->all();
+            if (Yii::$app->user->identity->role == 'admin') {
+                $data = TopMenu::find()->indexBy('id')
+                                        ->where(['OR', ['menu_user_auth' => 1], ['menu_admin' => 1]])
+                                        ->asArray()
+                                        ->all();
+            } else {
+                $data = TopMenu::find()->indexBy('id')->where(['menu_user_auth' => 1])->asArray()->all();
+            }
+
         }
+
+        if (empty($data)) die;
 
         foreach ($data as $id => $node) {
             if ($node['parent_id'] == 0) {   // главный пункт меню

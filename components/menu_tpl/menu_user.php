@@ -7,7 +7,7 @@
         <ul class='dropdown-menu'>
             <?php foreach ($category['childs'] as $key => $val) : ?>
                 <li>
-                    <a href="<?=$val['link']?>" title="<?=$val['title']?>"><?=$val['category']?></a>
+                    <a href="<?=$val['link']?>" title="<?=$val['description']?>"><?=$val['category']?></a>
                 </li>
             <?php endforeach; ?>
         </ul>

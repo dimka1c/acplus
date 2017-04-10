@@ -256,10 +256,10 @@ hmtl body {
   /*bottom: 5px;*/;
 }
 
-#google {
+/*#google {
   color: #f00;
   font-weight: 600;
-}
+}*/
 
 .menuString {
   margin: -59px 0 0 0;
@@ -788,6 +788,7 @@ h2 {
   left: 6%;
 }
 
+/*
 .google {
   width: 48px;
   height: 47px;
@@ -807,6 +808,7 @@ h2 {
   background-position: left -155px top -71px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
 }
+*/
 
 .tst_tests {
   display: block;

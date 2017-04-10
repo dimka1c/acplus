@@ -12,17 +12,63 @@ $config = [
     'modules' => [
         'user' => [
             'class' => 'dektrium\user\Module',
+            'modelMap' => [
+                'RegistrationForm' => 'app\models\RegistrationForm',
+            ],
+            'controllerMap' => [
+                'registration' => [
+                    'class' => \dektrium\user\controllers\RegistrationController::className(),
+                    'on ' . \dektrium\user\controllers\RegistrationController::EVENT_AFTER_REGISTER => function ($e) {
+                        Yii::$app->response->redirect(array('/user/security/login'))->send();
+                        Yii::$app->end();
+                    },
+                    'layout' => '@app/views/layouts/user_login',
+                ],
+                'security' => [
+                    'class' => \dektrium\user\controllers\SecurityController::className(),
+                    'on ' . \dektrium\user\controllers\SecurityController::EVENT_AFTER_LOGIN=> function ($e) {
+                        Yii::$app->response->redirect(array('/admin/index'))->send();
+                        Yii::$app->end();
+                    },
+                    'layout' => '@app/views/layouts/user_login',
+                ],
+                'admin' => [
+                    'class' => \dektrium\user\controllers\AdminController::className(),
+                    'layout' => '@app/views/layouts/admin',
+                ]
+
+            ],
+            'admins' => ['dimka1c'],
+            'layout' => '@app/views/layouts/user_login',
+            'mailer' => [
+                'sender'                => 'no-reply@myhost.com', // or ['no-reply@myhost.com' => 'Sender name']
+                'welcomeSubject'        => 'Welcome subject',
+                'confirmationSubject'   => 'Confirmation subject',
+                'reconfirmationSubject' => 'Email change subject',
+                'recoverySubject'       => 'Recovery subject',
+            ],
         ],
+        'rbac' => 'dektrium\rbac\RbacWebModule',
     ],
     'components' => [
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
+        ],
+        'view' => [
+            'theme' => [
+                'pathMap' => [
+                    '@dektrium/user/views' => '@app/views/user'
+                ],
+            ],
+        ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'd54paK6-6SgKZAmXGL5kQfPzyAh9usWD',
         ],
-        'user' => [
+/*        'user' => [
             'class' => 'app\components\User',
             'identityClass' => 'dektrium\user\models\User',
-        ],
+        ],*/
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
@@ -35,13 +81,13 @@ $config = [
             // 'useFileTransport' to false and configure a transport
             // for the mailer to send real emails.
             'useFileTransport' => false,
-            'mailer' => [
+/*            'mailer' => [
                 'sender'                => 'no-reply@myhost.com', // or ['no-reply@myhost.com' => 'Sender name']
                 'welcomeSubject'        => 'Подтверждение регистрации acplus.com.ua',
                 'confirmationSubject'   => 'Confirmation subject',
                 'reconfirmationSubject' => 'Email change subject',
                 'recoverySubject'       => 'Recovery subject',
-            ],
+            ],*/
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -58,22 +104,55 @@ $config = [
             'showScriptName' => false,
             'rules' => [
                 'login' => '/user/security/login',
-                'register' => '/user/registration/register',
+                'registration' => '/user/registration/register',
                 'remember-password' => '/user/recovery/request',
                 'logout' => '/user/security/logout',
                 'user/profile' => '/user/settings/profile',
                 'user/account' => '/user/settings/account',
                 '/user/networks' => '/user/settings/networks',
+                'admin/users' => 'user/admin/index',
+                'admin/roles' => 'user/admin/roles'
+
 
             ],
         ],
         'authClientCollection' => [
-            'class' => 'yii\authclient\Collection',
+            'class' => yii\authclient\Collection::className(),
             'clients' => [
                 'google' => [
-                    'class' => 'yii\authclient\clients\Google',
+                    'class' => 'dektrium\user\clients\Google',
                     'clientId' => $config['oauth_google_key'],
                     'clientSecret' => $config['oauth_google_secret'],
+                ],
+                'facebook' => [
+                    'class'        => 'dektrium\user\clients\Facebook',
+                    'clientId'     => 'APP_ID',
+                    'clientSecret' => 'APP_SECRET',
+                ],
+                'vkontakte' => [
+                    'class'        => 'dektrium\user\clients\VKontakte',
+                    'clientId'     => 'CLIENT_ID',
+                    'clientSecret' => 'CLIENT_SECRET',
+                ],
+                'twitter' => [
+                    'class'          => 'dektrium\user\clients\Twitter',
+                    'consumerKey'    => 'CONSUMER_KEY',
+                    'consumerSecret' => 'CONSUMER_SECRET',
+                ],
+                'github' => [
+                    'class'        => 'dektrium\user\clients\GitHub',
+                    'clientId'     => 'CLIENT_ID',
+                    'clientSecret' => 'CLIENT_SECRET',
+                ],
+                'yandex' => [
+                    'class'        => 'dektrium\user\clients\Yandex',
+                    'clientId'     => 'CLIENT_ID',
+                    'clientSecret' => 'CLIENT_SECRET'
+                ],
+                'linkedin' => [
+                    'class'        => 'dektrium\user\clients\LinkedIn',
+                    'clientId'     => 'CLIENT_ID',
+                    'clientSecret' => 'CLIENT_SECRET'
                 ],
             ],
         ],

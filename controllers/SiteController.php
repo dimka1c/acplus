@@ -68,6 +68,11 @@ class SiteController extends Controller
             $this->layout = 'default';
             return $this->render('index');
         } else {
+            if (Yii::$app->user->identity->role == 'admin') {
+                $this->layout = 'admin';
+                $this->view->title = 'Администратор';
+                return $this->redirect('admin/index');
+            }
             $this->layout = 'user_login';
             $this->view->title = 'Системы GPS мониторинга и контроля | Агроцентр-плюс';
             return $this->render('index');
@@ -132,5 +137,27 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
+    }
+
+    public function actionCreateRole()
+    {
+        echo 'create role admin<br>';
+
+        $role = Yii::$app->authManager->createRole('admin');
+        $role->description = 'Админ';
+        Yii::$app->authManager->add($role);
+
+        echo 'create role user<br>';
+
+        $role = Yii::$app->authManager->createRole('user');
+        $role->description = 'Юзер';
+        Yii::$app->authManager->add($role);
+    }
+
+    public function actionCreatePermission()
+    {
+        $permit = Yii::$app->authManager->createPermission('deleteUser');
+        $permit->description = 'Право удалять пользователя';
+        Yii::$app->authManager->add($permit);
     }
 }
