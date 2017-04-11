@@ -7,8 +7,13 @@ use yii\helpers\Html;
 use app\assets\AppAsset;
 use yii\helpers\Url;
 
-AppAsset::register($this);
-\app\assets\AppAssetAdmin::register($this);
+if ( Yii::$app->user->isGuest) {
+    AppAsset::register($this);
+} else {
+    \app\assets\AppAssetAdmin::register($this);
+}
+
+
 ?>
 <?php $this->beginPage() ?>
     <!DOCTYPE html>

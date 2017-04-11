@@ -72,6 +72,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= $form->field($model, 'bio')->textarea() ?>
 
+                <?= $form->field($profile, 'phone') ?>
+
+                <?= $form->field($profile, 'photo') ?>
+
+
                 <div class="form-group">
                     <div class="col-lg-offset-3 col-lg-9">
                         <?= Html::submitButton(Yii::t('user', 'Save'), ['class' => 'btn btn-block btn-success']) ?>

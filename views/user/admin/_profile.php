@@ -37,6 +37,8 @@ use yii\helpers\Html;
 <?= $form->field($profile, 'website') ?>
 <?= $form->field($profile, 'location') ?>
 <?= $form->field($profile, 'gravatar_email') ?>
+<?= $form->field($profile, 'phone') ?>
+<?= $form->field($profile, 'photo') ?>
 <?= $form->field($profile, 'bio')->textarea() ?>
 
 <div class="form-group">

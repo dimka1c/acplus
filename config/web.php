@@ -15,6 +15,7 @@ $config = [
             'class' => 'dektrium\user\Module',
             'modelMap' => [
                 'RegistrationForm' => 'app\models\RegistrationForm',
+                'Profile' => 'app\models\Profile',
             ],
             'controllerMap' => [
                 'registration' => [
@@ -148,8 +149,8 @@ $config = [
                 ],
                 'github' => [
                     'class'        => 'dektrium\user\clients\GitHub',
-                    'clientId'     => 'CLIENT_ID',
-                    'clientSecret' => 'CLIENT_SECRET',
+                    'clientId'     => $config['oauth_github_key'],
+                    'clientSecret' => $config['oauth_github_secret'],
                 ],
                 'yandex' => [
                     'class'        => 'dektrium\user\clients\Yandex',
