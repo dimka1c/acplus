@@ -7,11 +7,11 @@ use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
-use app\assets\AppAsset;
+use app\assets\AppAssetAdmin;
 use dektrium\user\widgets\Connect;
 use yii\helpers\Url;
 
-AppAsset::register($this);
+AppAssetAdmin::register($this);
 ?>
 <?php $this->beginPage() ?>
     <!DOCTYPE html>
