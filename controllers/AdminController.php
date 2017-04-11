@@ -15,7 +15,7 @@ use Yii;
 class AdminController extends Controller
 {
 
-    public $layout = 'admin';
+    public $layout = 'default';
 
     public function actionIndex()
     {
@@ -33,5 +33,7 @@ class AdminController extends Controller
     {
         return $this->render('edit-menu');
     }
+
+
 
 }

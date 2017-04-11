@@ -17,6 +17,10 @@ hmtl body {
   position: absolute;
 }
 
+.form-error {
+  margin-top: 50px;
+}
+
 .form-login {
   padding-top: 50px;
 }

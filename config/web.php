@@ -9,6 +9,7 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'language' => 'Ru-ru',
+    'defaultRoute' => 'site/index',
     'modules' => [
         'user' => [
             'class' => 'dektrium\user\Module',
@@ -22,7 +23,7 @@ $config = [
                         Yii::$app->response->redirect(array('/user/security/login'))->send();
                         Yii::$app->end();
                     },
-                    'layout' => '@app/views/layouts/user_login',
+                    'layout' => '@app/views/layouts/default',
                 ],
                 'security' => [
                     'class' => \dektrium\user\controllers\SecurityController::className(),
@@ -30,16 +31,16 @@ $config = [
                         Yii::$app->response->redirect(array('/admin/index'))->send();
                         Yii::$app->end();
                     },
-                    'layout' => '@app/views/layouts/user_login',
+                    'layout' => '@app/views/layouts/default',
                 ],
                 'admin' => [
                     'class' => \dektrium\user\controllers\AdminController::className(),
-                    'layout' => '@app/views/layouts/admin',
+                    'layout' => '@app/views/layouts/default',
                 ]
 
             ],
             'admins' => ['dimka1c'],
-            'layout' => '@app/views/layouts/user_login',
+            'layout' => '@app/views/layouts/default',
             'mailer' => [
                 'sender'                => 'no-reply@myhost.com', // or ['no-reply@myhost.com' => 'Sender name']
                 'welcomeSubject'        => 'Welcome subject',
@@ -50,8 +51,12 @@ $config = [
         ],
         'rbac' => [
             'class' => 'dektrium\rbac\RbacWebModule',
-            'layout' => '@app/views/layouts/admin',
+            'layout' => '@app/views/layouts/default',
         ],
+        'adminMenu' => [
+            'class' => 'app\module\adminMenu\Module',
+        ],
+
     ],
     'components' => [
 /*        'authManager' => [
@@ -116,8 +121,6 @@ $config = [
                 '/user/networks' => '/user/settings/networks',
                 'admin/users' => 'user/admin/index',
                 'admin/roles' => 'rbac',
-
-
             ],
         ],
         'authClientCollection' => [

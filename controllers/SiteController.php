@@ -56,6 +56,14 @@ class SiteController extends Controller
         ];
     }
 
+     public function actionError()
+    {
+        $this->layout = false;
+        return $this->render('error');
+    }
+
+
+
     public function actionRb()
     {
         $this->layout = 'empty';
@@ -166,4 +174,5 @@ class SiteController extends Controller
         $permit->description = 'Право удалять пользователя';
         Yii::$app->authManager->add($permit);
     }
+
 }
