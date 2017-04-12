@@ -1,0 +1,20 @@
+users ---> user, profile, social_account
+
+u_name --->  profile->name
+u_photo --->  profile->photo
+u_phone ---> profile->phone
+
+
+u_g_id --->  socail_accout->client_id
+u_email --->  user->email, profile->public_email
+
+
+
+
+1. Занести пользователя в БД - таблица user
+    - username -- Какое имя дать?
+    - email - понятно
+    - password ??? - какой пароль назначить
+
+2. Добавить в таблицу social_account значение client_id
+    - связать social_account.user_id === user.id

@@ -72,9 +72,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= $form->field($model, 'bio')->textarea() ?>
 
-                <?= $form->field($profile, 'phone') ?>
+                <?= $form->field($model, 'phone') ?>
 
-                <?= $form->field($profile, 'photo') ?>
+                <?= $form->field($model, 'photo') ?>
 
 
                 <div class="form-group">

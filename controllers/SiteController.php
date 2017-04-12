@@ -87,7 +87,7 @@ class SiteController extends Controller
                 $this->view->title = 'Администратор';
                 return $this->redirect('admin/index');
             }
-            $this->layout = 'user_login';
+            //$this->layout = 'user_login';
             $this->view->title = 'Системы GPS мониторинга и контроля | Агроцентр-плюс';
             return $this->render('index');
         }

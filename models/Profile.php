@@ -37,6 +37,7 @@ class Profile extends BaseProfile
         return $attrLabels;
     }
 
+    /*
     public function loadAttributes(User $user)
     {
         // here is the magic happens
@@ -45,7 +46,6 @@ class Profile extends BaseProfile
             'username' => $this->username,
             'password' => $this->password,
         ]);
-        /** @var Profile $profile */
         $profile = \Yii::createObject(BaseProfile::className());
         $profile->setAttributes([
             'phone' => $this->phone,
@@ -53,7 +53,7 @@ class Profile extends BaseProfile
         ]);
         $user->setProfile($profile);
     }
-
+    */
 }
 
 

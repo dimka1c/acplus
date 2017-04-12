@@ -13,6 +13,7 @@ $config = [
     'modules' => [
         'user' => [
             'class' => 'dektrium\user\Module',
+            'admins' => ['dimka1c'],
             'modelMap' => [
                 'RegistrationForm' => 'app\models\RegistrationForm',
                 'Profile' => 'app\models\Profile',
@@ -40,7 +41,6 @@ $config = [
                 ]
 
             ],
-            'admins' => ['dimka1c'],
             'layout' => '@app/views/layouts/default',
             'mailer' => [
                 'sender'                => 'no-reply@myhost.com', // or ['no-reply@myhost.com' => 'Sender name']
@@ -53,9 +53,6 @@ $config = [
         'rbac' => [
             'class' => 'dektrium\rbac\RbacWebModule',
             'layout' => '@app/views/layouts/default',
-        ],
-        'adminMenu' => [
-            'class' => 'app\module\adminMenu\Module',
         ],
 
     ],
@@ -122,6 +119,7 @@ $config = [
                 '/user/networks' => '/user/settings/networks',
                 'admin/users' => 'user/admin/index',
                 'admin/roles' => 'rbac',
+                'google-auth' => '/service/auth',
             ],
         ],
         'authClientCollection' => [

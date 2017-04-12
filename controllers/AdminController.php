@@ -19,14 +19,16 @@ class AdminController extends Controller
 
     public function actionIndex()
     {
-        $role = Yii::$app->user->identity->role;
-        $nameUser['name'] = \Yii::$app->user->identity->profile->name;
-        if ($role == 'admin') {
-            return $this->render('index', compact('nameUser'));
-        } else {
-            return $this->render('auth-user', compact('nameUser'));
+        if (!Yii::$app->user->isGuest) {
+            $role = Yii::$app->user->identity->role;
+            $nameUser['name'] = \Yii::$app->user->identity->profile->name;
+            if ($role == 'admin') {
+                return $this->render('index', compact('nameUser'));
+            } else {
+                return $this->render('auth-user', compact('nameUser'));
+            }
         }
-        return $this->render('index', compact('nameUser'));
+        return $this->redirect('/site/index');
     }
 
     public function actionEditMenu()
