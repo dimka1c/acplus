@@ -25,6 +25,10 @@ $config = [
                         Yii::$app->response->redirect(array('/user/security/login'))->send();
                         Yii::$app->end();
                     },
+                    'on ' . \dektrium\user\controllers\RegistrationController::EVENT_AFTER_CONFIRM => function ($e) {
+                        Yii::$app->response->redirect(array('/auser/index'))->send();
+                        Yii::$app->end();
+                    },
                     'layout' => '@app/views/layouts/default',
                 ],
                 'security' => [
@@ -71,6 +75,8 @@ $config = [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'd54paK6-6SgKZAmXGL5kQfPzyAh9usWD',
+            'enableCsrfValidation' => true,
+            'enableCookieValidation' => true
         ],
 /*        'user' => [
             'class' => 'app\components\User',
@@ -116,7 +122,7 @@ $config = [
                 'logout' => '/user/security/logout',
                 'user/profile' => '/user/settings/profile',
                 'user/account' => '/user/settings/account',
-                '/user/networks' => '/user/settings/networks',
+                'user/networks' => '/user/settings/networks',
                 'admin/users' => 'user/admin/index',
                 'admin/roles' => 'rbac',
                 'google-auth' => '/service/auth',

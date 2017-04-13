@@ -82,11 +82,12 @@ class SiteController extends Controller
             $this->layout = 'default';
             return $this->render('index');
         } else {
-            if (Yii::$app->user->identity->role == 'admin') {
+            if (Yii::$app->user->can('admin')) {
                 $this->layout = 'admin';
                 $this->view->title = 'Администратор';
                 return $this->redirect('admin/index');
             }
+
             //$this->layout = 'user_login';
             $this->view->title = 'Системы GPS мониторинга и контроля | Агроцентр-плюс';
             return $this->render('index');

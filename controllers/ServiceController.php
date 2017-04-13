@@ -8,6 +8,7 @@
 
 namespace app\controllers;
 
+use app\models\AddSocial;
 use app\models\AddUser;
 use app\models\OldDbUser;
 use app\models\SocialAccount;
@@ -85,12 +86,23 @@ class ServiceController extends Controller
                 $db->updated_at = '1491988447';
                 $db->flags = '0';
                 $db->last_login_at = '';
-                $db->save();
-                unset($db);
+                $db->save(false);
+
+                $social = new AddSocial();
+                $social->user_id = $db->id;
+                $social->provider = 'google';
+                $social->client_id = $data['u_g_id'];
+                $social->save(false);
+
              }
         }
     }
 
+
+    public function actionHas()
+    {
+
+    }
 
 
     public function actionGoogleAuth()

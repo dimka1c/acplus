@@ -8,6 +8,12 @@ fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
   outline: 0;
 }
 
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+  color: #262626;
+  text-decoration: none;
+  background-color: rgb(210, 212, 228);
+}
+
 hmtl body {
   margin: 15px 2% -76px 2%;
   height: 100%;

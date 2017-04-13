@@ -1,11 +1,27 @@
-$(function() {
-   $('.box_skitter_large').skitter({
+$(document).ready(function() {
+/*   $('.box_skitter_large').skitter({
     theme: 'clean',
     numbers_align: 'center',
     progressbar: true,
     dots: true,
     preview: true
-  });
+  }); */
+
+      $('.skitter-large').skitter({
+        responsive: {
+          small: {
+            animation: 'fade',
+            max_width: 768,
+            suffix: '-small'
+          },
+          medium: {
+            animation: 'directionRight',
+            max_width: 1024,
+            suffix: '-medium'
+          }
+        }
+      });
+
   callback();
   makeTmp();
   $('.main_item').click(MainMenuLink);

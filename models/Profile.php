@@ -22,8 +22,8 @@ class Profile extends BaseProfile
     public function rules()
     {
         $rules = parent::rules();
-        $rules['photo'] = ['photo', 'trim'];
-        $rules['phone'] = ['phone', 'trim'];
+        //$rules['photo'] = ['photo', 'trim'];
+        //$rules['phone'] = ['phone', 'trim'];
 
         return $rules;
     }
@@ -31,8 +31,8 @@ class Profile extends BaseProfile
     public function attributeLabels()
     {
         $attrLabels = parent::attributeLabels();
-        $attrLabels['photo'] = \Yii::t('user', 'Фото');
-        $attrLabels['phone'] = \Yii::t('user', 'Телефон');
+        //$attrLabels['photo'] = \Yii::t('user', 'Фото');
+        //$attrLabels['phone'] = \Yii::t('user', 'Телефон');
 
         return $attrLabels;
     }

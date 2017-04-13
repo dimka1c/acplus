@@ -54,8 +54,25 @@ if ( Yii::$app->user->isGuest) {
                     <?php endif; ?>
                     <?php if ( !Yii::$app->user->isGuest) : ?>
                         <ul class="nav navbar-nav navbar-right">
-                            <li id="login-btn">
-                                <a href="<?= Url::to(['/logout'])?>" data-method="post"><?= Yii::$app->user->identity->profile->name ? : 'Выход' ?></a>
+                            <li class="dropdown">
+                                <a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>
+                                    <?= Yii::$app->user->identity->profile->name ? : 'Выход' ?>
+                                    <span class='caret'>
+                                </a>
+                                <ul class='dropdown-menu'>
+                                    <li class="top-menu">
+                                        <a href="<?= Url::to(['/user/profile'])?>" title="">Профиль</a>
+                                    </li>
+                                    <li class="top-menu">
+                                        <a href="<?= Url::to(['/user/account'])?>" title="">Настройка аккаунта</a>
+                                    </li>
+                                    <li class="top-menu">
+                                        <a href="<?= Url::to(['/user/networks'])?>" title="">Соц. сети</a>
+                                    </li>
+                                    <li class="top-menu">
+                                        <a href="<?= Url::to(['/logout'])?>" data-method="post" title="Выход">Выход</a>
+                                    </li>
+                                </ul>
                             </li>
                         </ul>
                     <?php endif; ?>

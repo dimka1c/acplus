@@ -19,6 +19,7 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'css/site.css',
+        //'css/skitter.css',
         'css/skitter.styles.css',
         'css/prettify.css',
         'css/style_acplus.css',

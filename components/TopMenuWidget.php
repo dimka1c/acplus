@@ -42,7 +42,7 @@ class TopMenuWidget extends Widget
                 return $menuCache;
             }
         } else {
-            if (Yii::$app->user->identity->role == 'admin') {
+            if (Yii::$app->user->can('admin')) {
                 $menuFor = 'menu_admin';
                 if ($menuCache = Yii::$app->cache->get('menu_admin')) {
                     return $menuCache;
@@ -108,7 +108,7 @@ class TopMenuWidget extends Widget
         if (Yii::$app->user->isGuest) {             // если неавторизованный пользователь
             $data = TopMenu::find()->indexBy('id')->where(['menu_user_na' => 1])->asArray()->all();
         } elseif (!Yii::$app->user->isGuest) {      // если авторизованный пользователь
-            if (Yii::$app->user->identity->role == 'admin') {
+            if (Yii::$app->user->can('admin')) {
                 $data = TopMenu::find()->indexBy('id')
                                         ->where(['OR', ['menu_user_auth' => 1], ['menu_admin' => 1]])
                                         ->asArray()

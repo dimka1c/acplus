@@ -35,6 +35,13 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="panel-heading">
                 <?= Html::encode($this->title) ?>
             </div>
+
+            <?php if ($msg = Yii::$app->session->getFlash('profile_name')) : ?>
+                <div class="alert alert-danger">
+                    <?= $msg ?>
+                </div>
+            <?php endif ?>
+
             <div class="panel-body">
                 <?php $form = ActiveForm::begin([
                     'id' => 'profile-form',
@@ -56,7 +63,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= $form->field($model, 'location') ?>
 
-                <?= $form
+                <?php /*$form
                     ->field($model, 'timezone')
                     ->dropDownList(
                         ArrayHelper::map(
@@ -64,18 +71,13 @@ $this->params['breadcrumbs'][] = $this->title;
                             'timezone',
                             'name'
                         )
-                    ); ?>
+                    ); */ ?>
 
-                <?= $form
+                <?php /* $form
                     ->field($model, 'gravatar_email')
-                    ->hint(Html::a(Yii::t('user', 'Change your avatar at Gravatar.com'), 'http://gravatar.com')) ?>
+                    ->hint(Html::a(Yii::t('user', 'Change your avatar at Gravatar.com'), 'http://gravatar.com')) */ ?>
 
                 <?= $form->field($model, 'bio')->textarea() ?>
-
-                <?= $form->field($model, 'phone') ?>
-
-                <?= $form->field($model, 'photo') ?>
-
 
                 <div class="form-group">
                     <div class="col-lg-offset-3 col-lg-9">

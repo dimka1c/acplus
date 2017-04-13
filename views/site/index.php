@@ -1,7 +1,15 @@
+<?php
+//$this->registerJsFile('@web/js/jquery7.js', ['depends' => \yii\bootstrap\BootstrapPluginAsset::className()]);
+//$this->registerJsFile('@web/js/jquery.skitter.min.js', ['depends' => \yii\bootstrap\BootstrapPluginAsset::className()]);
+//$this->registerJsFile('@web/js/jquery7.js', ['depends' => \yii\bootstrap\BootstrapPluginAsset::className()]);
+//$this->registerJsFile('@web/js/main.js', ['depends' => \yii\bootstrap\BootstrapPluginAsset::className()]);
+
+?>
 <div class="container">
     <div class="clear fontStyle"></div>
     <div class="content">
         <div class="border_box">
+
             <div class="box_skitter box_skitter_large">
                 <ul>
                     <li><a href="#cube"><img src="/images/slider/wall/gpsControl.jpg" class="circles" /></a>

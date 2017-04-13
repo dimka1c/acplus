@@ -19,5 +19,4 @@ class AddUser extends ActiveRecord
         return 'user';
     }
 
-
 }
