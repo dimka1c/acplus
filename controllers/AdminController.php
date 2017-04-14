@@ -10,7 +10,6 @@ namespace app\controllers;
 
 
 use app\models\OldDbUser;
-use himiklab\jqgrid\actions\JqGridActiveAction;
 use yii\web\Controller;
 use Yii;
 use yii\filters\AccessControl;
@@ -20,7 +19,6 @@ class AdminController extends Controller
 
     public $layout = 'default';
 
-    /*
     public function behaviors()
     {
         return [
@@ -28,34 +26,28 @@ class AdminController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => [
+/*                        'actions' => [
                             'admin-users',
                             'admin-roles',
                             'index',
                             'grid',
-                        ],
+                        ],*/
                         'allow' => true,
                         'roles' => ['admin'],
-                    ],
-                    [
-                        'actions' => [
-                            'index',
-                            'grid',
-                        ],
-                        'allow' => true,
-                        'roles' => ['@'],
                     ],
                 ],
             ],
         ];
     }
-*/
+
 
     public function actionIndex()
     {
         if (!Yii::$app->user->isGuest) {
             $nameUser['name'] = \Yii::$app->user->identity->profile->name;
-            if (!$this->isEmptyProfile()) $this->redirect('/user/profile');
+            if (!$this->isEmptyProfile()) {
+                return $this->redirect('/user/profile');
+            }
             if (Yii::$app->user->can('admin')) {
                 return $this->render('index', compact('nameUser'));
             } else {

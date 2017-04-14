@@ -2,12 +2,15 @@
 
 namespace app\controllers;
 
+use app\models\Cars;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use yii\helpers\Url;
+use himiklab\jqgrid\actions\JqGridActiveAction;
 
 class SiteController extends Controller
 {
@@ -53,6 +56,14 @@ class SiteController extends Controller
                 'class' => 'yii\captcha\CaptchaAction',
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
             ],
+            'jqgrid' => [
+                'class' => JqGridActiveAction::className(),
+                'model' => Cars::className(),
+                'scope' => function ($query) {
+                    /** @var \yii\db\ActiveQuery $query */
+                    $query->select(['title', 'author', 'language']);
+                },
+            ],
         ];
     }
 
@@ -79,18 +90,12 @@ class SiteController extends Controller
     {
         if (Yii::$app->user->isGuest) {
             $this->view->title = 'Системы GPS мониторинга и контроля | Агроцентр-плюс';
-            $this->layout = 'default';
             return $this->render('index');
         } else {
             if (Yii::$app->user->can('admin')) {
-                $this->layout = 'admin';
-                $this->view->title = 'Администратор';
-                return $this->redirect('admin/index');
+                return $this->redirect('/admin/index');
             }
-
-            //$this->layout = 'user_login';
-            $this->view->title = 'Системы GPS мониторинга и контроля | Агроцентр-плюс';
-            return $this->render('index');
+            return $this->redirect(Url::to('/auser/index'));
         }
     }
 
@@ -175,5 +180,33 @@ class SiteController extends Controller
         $permit->description = 'Право удалять пользователя';
         Yii::$app->authManager->add($permit);
     }
+
+    public function actionCars()
+    {
+        if (Yii::$app->request->isAjax) {
+            if ( $name = Yii::$app->request->post('sidx')) {
+                $sort = Yii::$app->request->post('sord');
+                $cars = Cars::find()->asArray()->orderBy([$name => $sort])->all();
+            } else {
+                $cars = Cars::find()->asArray()->all();
+            }
+            $this->layout = false;
+            $data = json_encode($cars);
+            echo $data;
+            exit;
+        }
+        return $this->render('cars', compact('cars'));
+    }
+
+/*    public function actionCarsData()
+    {
+        if (Yii::$app->request->isAjax) {
+            $cars = Cars::find()->asArray()->all();
+            $this->layout = false;
+            $cars = Cars::find()->asArray()->all();
+            $data = json_encode($cars);
+            echo $data;
+        }
+    }*/
 
 }

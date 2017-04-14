@@ -6,6 +6,7 @@
 namespace app\controllers;
 
 
+use yii\helpers\Url;
 use yii\web\Controller;
 use Yii;
 
@@ -59,11 +60,13 @@ public function behaviors()
     public function actionIndex()
     {
         if (!Yii::$app->user->isGuest) {
-            if (!$this->isEmptyProfile()) $this->redirect('/user/profile');
-            if (Yii::$app->user->can('authuser')) {
-                return $this->render('index');
+            if (Yii::$app->user->can('admin')) {
+                return $this->redirect('/admin');
             }
-            return $this->redirect('/site/index');
+            if (!$this->isEmptyProfile()) {
+                return $this->redirect('/user/profile');
+            }
+            return $this->render('index');
         }
 
     }

@@ -41,26 +41,22 @@ $.jgrid.regional["ru"] = {
 		pgrecs : "Записей на стр.",
 		showhide: "Показать/Скрыть таблицу",
 		// mobile
-		pagerCaption : "Грид::Параметры страницы",
-		pageText : "Страница:",
-		recordPage : "Записей на стр.",
-		nomorerecs : "Нет больше записей...",
-		scrollPullup: "Потяните, чтобы загрузить более...",
-		scrollPulldown : "Потяните вниз чтобы обновить...",
-		scrollRefresh : "Отпустите, чтобы обновить..."
+		pagerCaption : "Grid::Page Settings",
+		pageText : "Page:",
+		recordPage : "Records per Page",
+		nomorerecs : "No more records...",
+		scrollPullup: "Pull up to load more...",
+		scrollPulldown : "Pull down to refresh...",
+		scrollRefresh : "Release to refresh..."
 	},
 	search : {
 		caption: "Поиск...",
 		Find: "Найти",
 		Reset: "Сброс",
-		odata: [{ oper:'eq', text:"равно"},{ oper:'ne', text:"не равно"},{ oper:'lt', text:"меньше"},{ oper:'le', text:"меньше или равно"},{ oper:'gt', text:"больше"},{ oper:'ge', text:"больше или равно"},{ oper:'bw', text:"начинается с"},{ oper:'bn', text:"не начинается с"},{ oper:'in', text:"находится в"},{ oper:'ni', text:"не находится в"},{ oper:'ew', text:"заканчивается на"},{ oper:'en', text:"не заканчивается на"},{ oper:'cn', text:"содержит"},{ oper:'nc', text:"не содержит"},{ oper:'nu', text:"равно NULL"},{ oper:'nn', text:"не равно NULL"}, {oper:'bt', text:'между'}],
+		odata: [{ oper:'eq', text:"равно"},{ oper:'ne', text:"не равно"},{ oper:'lt', text:"меньше"},{ oper:'le', text:"меньше или равно"},{ oper:'gt', text:"больше"},{ oper:'ge', text:"больше или равно"},{ oper:'bw', text:"начинается с"},{ oper:'bn', text:"не начинается с"},{ oper:'in', text:"находится в"},{ oper:'ni', text:"не находится в"},{ oper:'ew', text:"заканчивается на"},{ oper:'en', text:"не заканчивается на"},{ oper:'cn', text:"содержит"},{ oper:'nc', text:"не содержит"},{ oper:'nu', text:"равно NULL"},{ oper:'nn', text:"не равно NULL"}],
 		groupOps: [	{ op: "AND", text: "все" }, { op: "OR", text: "любой" }],
 		operandTitle : "Выбрать поисковую операцию.",
-		resetTitle : "Сбросить поиск",
-		addsubgrup : "Добавить группу",
-		addrule : "Добавить правило",
-		delgroup : "Удалить группу",
-		delrule : "Удалить правило"
+		resetTitle : "Сбросить поиск"
 	},
 	edit : {
 		addCaption: "Добавить запись",
@@ -116,7 +112,7 @@ $.jgrid.regional["ru"] = {
 		savetitle: "Сохранить запись",
 		canceltext: "",
 		canceltitle : "Отмена сохранения",
-		selectcaption : "Действия..."
+		selectcaption : "Actions..."
 	},
 	col : {
 		caption: "Показать/скрыть столбцы",
@@ -168,18 +164,6 @@ $.jgrid.regional["ru"] = {
 		target: '',
 		checkbox : {disabled:true},
 		idName : 'id'
-	},
-	colmenu : {
-		sortasc : "Сортировка по возрастанию",
-		sortdesc : "Сортировка по убыванию",
-		columns : "Колонны",
-		filter : "Филтрировать",
-		grouping : "Группа по",
-		ungrouping : "Разгруппировать",
-		searchTitle : "Строки со значениями",
-		freeze : "Закрепление",
-		unfreeze : "Отмена закрепление",
-		reorder : "Переместить в порядок"
 	}
 };
 }));

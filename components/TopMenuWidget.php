@@ -20,7 +20,7 @@ class TopMenuWidget extends Widget
     public $tpl;
     public $tree;
     public $data;
-    public $timeCache = 3600 * 24 * 30;     // время хранения меню в кэше 30 дней
+    public $timeCache = 3600 * 24;     // время хранения меню в кеше 24 часа
 
     public function init()
     {
@@ -59,7 +59,8 @@ class TopMenuWidget extends Widget
         $this->menuHtml = $this->getMenuHtml($this->tree);
         // записываем к кэш;
         if (!empty($menuFor) || !empty($this->menuHtml)) {
-            Yii::$app->cache->set($menuFor, $this->menuHtml, $this->timeCache);     // Записываем меню в кеш
+            // Записываем меню в кеш
+            //Yii::$app->cache->set($menuFor, $this->menuHtml, $this->timeCache);
         }
         return $this->menuHtml;
     }
@@ -72,49 +73,35 @@ class TopMenuWidget extends Widget
      * ИСПОЛЬЗОВАЛОСЬ ДЛЯ СТАРОЙ ТАБЛИЦЫ MENU.
      * БЫЛА ДРУГАЯ СТРУКТУРА ТАБЛИЦЫ
      */
-/*
-    protected function getTree($id_main_group)
-    {
-        $menu = [];
-        $result = TopMenu::find()->indexBy('m_id')->asArray()->all();
-        foreach ($result as $key => $val) {           //меняем ключи массива на m_id
-            $data[$val['m_id']] = $val;
-        }
-        unset($result);
-        unset($val);
-        foreach ($data as $id => $node) {
-            if($node['m_menu'] == $id_main_group) {
-                //$this->data[$id] = $node;
-                if($node['m_param'] != 5) {     // пункты меню с m_param= 5 не втсавляем, это пункты админа
-                    $this->data[$node['m_link']] = $node;
-                }
-            } elseif ($node['m_menu'] > 2) {
-                //$this->data[$node['m_menu']]['childs'][$node['m_id']] = $node;
-
-                // делаем только для двухуровнего меню, так как БД сконфигурировано изначально неверно
-                if(isset($this->data[$node['m_menu']])) {
-                    $this->data[$node['m_menu']]['childs'][$node['m_id']] = $node;
-                }
-            }
-        }
-        return $this->data;
-    }
-*/
-
 
     protected function getTreeNew()
     {
         $menu = [];
-        if (Yii::$app->user->isGuest) {             // если неавторизованный пользователь
-            $data = TopMenu::find()->indexBy('id')->where(['menu_user_na' => 1])->asArray()->all();
+        if (Yii::$app->user->isGuest) {
+            // меню для неавторизированного пользователя
+            $data = TopMenu::find()->indexBy('id')
+                                    ->where(['menu_user_na' => 1])
+                                    ->orderBy('parent_id')
+                                    ->addOrderBy('position')
+                                    ->asArray()
+                                    ->all();
         } elseif (!Yii::$app->user->isGuest) {      // если авторизованный пользователь
             if (Yii::$app->user->can('admin')) {
+                // меню для Админа
                 $data = TopMenu::find()->indexBy('id')
-                                        ->where(['OR', ['menu_user_auth' => 1], ['menu_admin' => 1]])
+                                        ->where(['menu_admin' => 1])
+                                        ->orderBy('parent_id')
+                                        ->addOrderBy('position')
                                         ->asArray()
                                         ->all();
             } else {
-                $data = TopMenu::find()->indexBy('id')->where(['menu_user_auth' => 1])->asArray()->all();
+                // меню для Авторизированного пользователя
+                $data = TopMenu::find()->indexBy('id')
+                                        ->where(['menu_user_auth' => 1])
+                                        ->orderBy('parent_id')
+                                        ->addOrderBy('position')
+                                        ->asArray()
+                                        ->all();
             }
 
         }
@@ -128,6 +115,7 @@ class TopMenuWidget extends Widget
                 $this->data[$node['parent_id']]['childs'][$node['id']] = $node;
             }
         }
+
         return $this->data;
     }
 

@@ -51,14 +51,10 @@ $.jgrid.regional["en"] = {
 		caption: "Search...",
 		Find: "Find",
 		Reset: "Reset",
-		odata: [{ oper:'eq', text:'equal'},{ oper:'ne', text:'not equal'},{ oper:'lt', text:'less'},{ oper:'le', text:'less or equal'},{ oper:'gt', text:'greater'},{ oper:'ge', text:'greater or equal'},{ oper:'bw', text:'begins with'},{ oper:'bn', text:'does not begin with'},{ oper:'in', text:'is in'},{ oper:'ni', text:'is not in'},{ oper:'ew', text:'ends with'},{ oper:'en', text:'does not end with'},{ oper:'cn', text:'contains'},{ oper:'nc', text:'does not contain'},{ oper:'nu', text:'is null'},{ oper:'nn', text:'is not null'}, {oper:'bt', text:'between'}],
+		odata: [{ oper:'eq', text:'equal'},{ oper:'ne', text:'not equal'},{ oper:'lt', text:'less'},{ oper:'le', text:'less or equal'},{ oper:'gt', text:'greater'},{ oper:'ge', text:'greater or equal'},{ oper:'bw', text:'begins with'},{ oper:'bn', text:'does not begin with'},{ oper:'in', text:'is in'},{ oper:'ni', text:'is not in'},{ oper:'ew', text:'ends with'},{ oper:'en', text:'does not end with'},{ oper:'cn', text:'contains'},{ oper:'nc', text:'does not contain'},{ oper:'nu', text:'is null'},{ oper:'nn', text:'is not null'}],
 		groupOps: [{ op: "AND", text: "all" },{ op: "OR",  text: "any" }],
 		operandTitle : "Click to select search operation.",
-		resetTitle : "Reset Search Value",
-		addsubgrup : "Add subgroup",
-		addrule : "Add rule",
-		delgroup : "Delete group",
-		delrule : "Delete rule"
+		resetTitle : "Reset Search Value"
 	},
 	edit : {
 		addCaption: "Add Record",
@@ -207,18 +203,6 @@ $.jgrid.regional["en"] = {
 		target: '',
 		checkbox : {disabled:true},
 		idName : 'id'
-	},
-	colmenu : {
-		sortasc : "Sort Ascending",
-		sortdesc : "Sort Descending",
-		columns : "Columns",
-		filter : "Filter",
-		grouping : "Group By",
-		ungrouping : "Ungroup",
-		searchTitle : "Get items with value that:",
-		freeze : "Freeze",
-		unfreeze : "Unfreeze",
-		reorder : "Move to reorder"
 	}
 };
 }));
