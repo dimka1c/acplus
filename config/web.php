@@ -125,7 +125,7 @@ $config = [
                 'admin/roles' => 'rbac',
                 'google-auth' => '/service/auth',
                 'admnin' => 'admin/index',
-                'cars' => 'site/cars',
+                '/cars' => 'site/cars',
             ],
         ],
         'authClientCollection' => [

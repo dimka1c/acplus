@@ -2,7 +2,7 @@
 
 namespace app\controllers;
 
-use app\models\Cars;
+use app\models\GPScarlist;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -58,7 +58,7 @@ class SiteController extends Controller
             ],
             'jqgrid' => [
                 'class' => JqGridActiveAction::className(),
-                'model' => Cars::className(),
+                'model' => GPScarlist::className(),
                 'scope' => function ($query) {
                     /** @var \yii\db\ActiveQuery $query */
                     $query->select(['title', 'author', 'language']);
@@ -66,14 +66,6 @@ class SiteController extends Controller
             ],
         ];
     }
-
-     public function actionError()
-    {
-        $this->layout = false;
-        return $this->render('error');
-    }
-
-
 
     public function actionRb()
     {
@@ -186,14 +178,14 @@ class SiteController extends Controller
         if (Yii::$app->request->isAjax) {
             if ( $name = Yii::$app->request->post('sidx')) {
                 $sort = Yii::$app->request->post('sord');
-                $cars = Cars::find()->asArray()->orderBy([$name => $sort])->all();
+                $cars = GPScarlist::find()->asArray()->orderBy([$name => $sort])->all();
             } else {
-                $cars = Cars::find()->asArray()->all();
+                $cars = GPScarlist::find()->asArray()->all();
             }
             $this->layout = false;
             $data = json_encode($cars);
             echo $data;
-            exit;
+            return;
         }
         return $this->render('cars', compact('cars'));
     }

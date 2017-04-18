@@ -13,10 +13,11 @@ $this->registerCssFile('@web/css/ui.jqgrid-bootstrap.css', ['depends' => \yii\bo
 
 <table id="i_grid">
     <tr><td></td></tr>
+    <div id="pager"></div>
 
 </table>
 
-<div id="pager"></div>
+
 
 
 <div class="container-fluid">
@@ -35,12 +36,18 @@ $this->registerCssFile('@web/css/ui.jqgrid-bootstrap.css', ['depends' => \yii\bo
                 [
                     'name' => 'owner_id',
                     'index' => 'owner_id',
-                    'editable' => true,
+                    'editable' => false,
                     'align' => 'center',
-                    'editable' => true,
                     'search' => true,
                     'sortable' => false,
+                    'stype' => 'select',
+                    'searchoptions' => [
+                        'value' => $cars,
+                        'clearSearch' => false,
+                        //'dataInit' => 'InitFilterSelectMenu'
+                    ],
                     //'width' => 50,
+                    //'classes' => ['btn btn-success'],
                 ],
                 ['name' => 'name_ts', 'index' => 'name_ts', 'editable' => true],
                 ['name' => 'kuzov', 'index' => 'kuzov', 'editable' => true],
@@ -57,9 +64,20 @@ $this->registerCssFile('@web/css/ui.jqgrid-bootstrap.css', ['depends' => \yii\bo
                 ['name' => 'tank_volume', 'index' => 'tank_volume', 'editable' => true],
 
             ],
+            'altRows' => true,
+            'altclass' => 'ui-priority-secondary',
+            //'autowidth' => true,
+            'cellEdit' => true,
+            //'direction' => 'rtl',
+            //'footerrow' => true,
+            //'forceFit' => true,
+            //'shrinkToFit' => true,
+            //'grouping' => true,
+            //'hiddengrid' => true,
+            //'hidegrid' => true,
             'pager' => '#pager',
             'rowNum' => 20,
-            'rowList' => [5,10,20,30,50,70,100, 150],
+            'rowList' => [5,10,20,30,50,70,100,150],
             'sortname' => 'nomer_ts',
             'autowidth' => true,
             'height' => 'auto',
@@ -72,7 +90,7 @@ $this->registerCssFile('@web/css/ui.jqgrid-bootstrap.css', ['depends' => \yii\bo
         //userDataOnFooter : true,
         //altRows     : true,
             'rownumbers' => true,
-            'loadtext' => 'Загрузка...>',
+            'loadtext' => true,
             //'ondblClickRow' => 'GridDblClkRow',
 
         ],

@@ -1,6 +1,7 @@
 html,
 body {
     height: 100%;
+    padding-top: 80px;
 }
 
 .wrap {
@@ -12,6 +13,20 @@ body {
 
 .wrap > .container {
     padding: 70px 15px 20px;
+}
+
+.backslash {
+    padding-top: 80px;
+}
+
+.menu-top-background {
+    background-color: #dddddd;
+}
+
+
+.navbar-fon-top {
+    background-color: #ddd;
+    border-color: rgba(62, 50, 50, 0.24);
 }
 
 .footer {

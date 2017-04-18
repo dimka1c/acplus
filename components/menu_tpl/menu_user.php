@@ -4,7 +4,7 @@
             <?=$category['category']?>
             <span class='caret'>
         </a>
-        <ul class='dropdown-menu'>
+        <ul class='dropdown-menu menu-top-background'>
             <?php foreach ($category['childs'] as $key => $val) : ?>
                 <li class="top-menu">
                     <a href="<?= \yii\helpers\Url::to($val['link'])?>" title="<?=$val['description']?>"><?=$val['category']?></a>
